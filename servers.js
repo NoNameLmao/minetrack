@@ -32,8 +32,7 @@ module.exports = [
 	"mc.restartcraft.fun",
 	"mc.minelandy.net",
 	"play.migosmc.net", // go.migosmc.net
-	"rat.skybars.net",
-	"top.mcmcmc.net", // megaland.mcmcmc.net, vega.mcmcmc.net
+	"top.mcmcmc.net", // megaland.mcmcmc.net, vega.mcmcmc.net, rat.skybars.net
 	"mc.fast-mc.ru",
 	"mcfunny.net",
 	"mc.nexcraft.me",
