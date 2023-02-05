@@ -77,5 +77,15 @@ module.exports = [
 	"mc.mcs.gg",
 	"leonemc.net",
 	"mcsl.gtm.network",
-	"fly.join-mineland.net"
+	"fly.join-mineland.net",
+	"mushmc.com",
+	"jogar.pixelmonbrasil.com.br",
+	"hylex.gg",
+	"og-network.net",
+	"play.craftrise.com.tr",
+	"eu.sonoyuncu.network",
+	"mc.reallyworld.ru",
+	"gamster.org",
+	"blocksmc.com",
+	"mc.universocraft.com"
 ]
