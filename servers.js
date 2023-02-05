@@ -47,5 +47,10 @@ module.exports = [
 	"play.alphamc.ru:PC",
 	"mc.playmine.org:PC",
 	"mc.musteryworld.ru:PC",
-	"top1.funnymc.net:PC"
+	"top1.funnymc.net:PC",
+	"play.pokesaga.org:PC",
+	"play.jackpotmc.com:PC",
+	"play.smashmc.co:PC",
+	"mcslj.jartex.fun:PC",
+	"mcsl.zedarmc.com:PC"
 ]
