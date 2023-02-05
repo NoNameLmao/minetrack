@@ -36,8 +36,7 @@ module.exports = [
 	"mc.fast-mc.ru",
 	"mcfunny.net",
 	"mc.nexcraft.me",
-	"play.mcskill.net",
-	"mc.mcskill.net",
+	"mc.mcskill.net", // play.mcskill.net
 	"gw-play.ru",
 	"join.ml-mc.com",
 	"msl.pixelmonrealms.com",
