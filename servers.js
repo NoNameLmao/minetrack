@@ -4,7 +4,7 @@ module.exports = [
 	"play.cubecraft.net:PC",
 	"2b2t.org:PC",
 	"hub.opblocks.com:PC", // fun.opblocks.com
-	"org.mc-complex.com:PC",
+	"org.mc-complex.com:PC", // msl.mc-complex.com
 	"org.akumamc.net:PC",
 	"mcs.mchub.com:PC",
 	"8b8t.me:PC",
@@ -24,7 +24,6 @@ module.exports = [
 	"play.mcfalcon.org:PC",
 	"mccnetwork.uk:PC",
 	"9b9t.me:PC",
-	"msl.mc-complex.com:PC",
 	"mcsl.applecraft.org:PC",
 	"play.blossomcraft.org:PC"
 ]
