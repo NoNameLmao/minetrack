@@ -25,5 +25,13 @@ module.exports = [
 	"mccnetwork.uk:PC",
 	"9b9t.me:PC",
 	"mcsl.applecraft.org:PC",
-	"play.blossomcraft.org:PC"
+	"play.blossomcraft.org:PC",
+	"mc.advancius.net:PC",
+	"play.mlegacy.net:PC",
+	"mc.agemagic.ru:PC",
+	"mc.restartcraft.fun:PC",
+	"mc.minelandy.net:PC",
+	"play.migosmc.net:PC",
+	"rat.skybars.net:PC",
+	"top.mcmcmc.net:PC"
 ]
