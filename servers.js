@@ -31,7 +31,7 @@ module.exports = [
 	"mc.agemagic.ru:PC",
 	"mc.restartcraft.fun:PC",
 	"mc.minelandy.net:PC",
-	"play.migosmc.net:PC",
+	"play.migosmc.net:PC", // go.migosmc.net
 	"rat.skybars.net:PC",
 	"top.mcmcmc.net:PC", // megaland.mcmcmc.net, vega.mcmcmc.net
 	"mc.fast-mc.ru:PC",
@@ -52,5 +52,10 @@ module.exports = [
 	"play.jackpotmc.com:PC",
 	"play.smashmc.co:PC",
 	"mcslj.jartex.fun:PC",
-	"mcsl.zedarmc.com:PC"
+	"mcsl.zedarmc.com:PC",
+	"mc.elenox.net:PC",
+	"sun.mcbatyacraft.ru:PC",
+	"join.alphacraft.ru:PC",
+	"goodmc.ru:PC",
+	"vanilla.sparkcraft.ru:PC"
 ]
