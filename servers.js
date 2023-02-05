@@ -39,5 +39,9 @@ module.exports = [
 	"mc.nexcraft.me:PC",
 	"play.mcskill.net:PC",
 	"mc.mcskill.net:PC",
-	"gw-play.ru:PC"
+	"gw-play.ru:PC",
+	"join.ml-mc.com:PC",
+	"msl.pixelmonrealms.com:PC",
+	"mcslj.pika.host:PC",
+	"play.fruitysmp.com:PC"
 ]
