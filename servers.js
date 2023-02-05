@@ -33,5 +33,11 @@ module.exports = [
 	"mc.minelandy.net:PC",
 	"play.migosmc.net:PC",
 	"rat.skybars.net:PC",
-	"top.mcmcmc.net:PC"
+	"top.mcmcmc.net:PC", // megaland.mcmcmc.net, vega.mcmcmc.net
+	"mc.fast-mc.ru:PC",
+	"mcfunny.net:PC",
+	"mc.nexcraft.me:PC",
+	"play.mcskill.net:PC",
+	"mc.mcskill.net:PC",
+	"gw-play.ru:PC"
 ]
