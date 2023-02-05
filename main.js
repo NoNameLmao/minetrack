@@ -6,12 +6,12 @@ const servers = require('./servers')
 const app = new App()
 servers.forEach((serverIP, serverId) => {
 	let hash = 0
-	for (let i = server.name.length - 1; i >= 0; i--) {
-		hash = server.name.charCodeAt(i) + ((hash << 5) - hash)
-	}
 	let server = {
 		ip: serverIP.split(':')[0],
 		type: serverIP.split(':')[1]
+	}
+	for (let i = server.name.length - 1; i >= 0; i--) {
+		hash = server.name.charCodeAt(i) + ((hash << 5) - hash)
 	}
 	const color = Math.floor(Math.abs((Math.sin(hash) * 10000) % 1 * 16777216)).toString(16)
 	server.color = '#' + Array(6 - color.length + 1).join('0') + color
