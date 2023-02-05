@@ -6,10 +6,19 @@ const servers = require('./servers')
 const app = new App()
 servers.forEach((serverIP, serverId) => {
 	let hash = 0
-	let server = {
-		name: serverIP.split(':')[0],
-		ip: serverIP.split(':')[0],
-		type: serverIP.split(':')[1]
+	let server
+	if (!serverIP.includes('/')) {
+		server = {
+			name: serverIP,
+			ip: serverIP,
+			type: 'PC'
+		}
+	} else {
+		server = {
+			name: serverIP.split('/')[0],
+			ip: serverIP.split('/')[0],
+			type: serverIP.split('/')[1]
+		}
 	}
 	for (let i = server.name.length - 1; i >= 0; i--) {
 		hash = server.name.charCodeAt(i) + ((hash << 5) - hash)
