@@ -7,6 +7,7 @@ const app = new App()
 servers.forEach((serverIP, serverId) => {
 	let hash = 0
 	let server = {
+		name: serverIP.split(':')[0],
 		ip: serverIP.split(':')[0],
 		type: serverIP.split(':')[1]
 	}
@@ -15,7 +16,6 @@ servers.forEach((serverIP, serverId) => {
 	}
 	const color = Math.floor(Math.abs((Math.sin(hash) * 10000) % 1 * 16777216)).toString(16)
 	server.color = '#' + Array(6 - color.length + 1).join('0') + color
-	server.name = server.ip
 	app.serverRegistrations.push(new ServerRegistration(app, serverId, server))
 })
 if (!config.serverGraphDuration) {
