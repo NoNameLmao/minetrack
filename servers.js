@@ -43,5 +43,9 @@ module.exports = [
 	"join.ml-mc.com:PC",
 	"msl.pixelmonrealms.com:PC",
 	"mcslj.pika.host:PC",
-	"play.fruitysmp.com:PC"
+	"play.fruitysmp.com:PC",
+	"play.alphamc.ru:PC",
+	"mc.playmine.org:PC",
+	"mc.musteryworld.ru:PC",
+	"top1.funnymc.net:PC"
 ]
