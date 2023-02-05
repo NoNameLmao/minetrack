@@ -67,5 +67,15 @@ module.exports = [
 	"mcsl.vortexnetwork.net",
 	"play.havoc.games",
 	"mc.insanitycraft.net",
-	"msl.mc-blaze.com"
+	"msl.mc-blaze.com",
+	"theuniverse.network",
+	"play.ultimismc.com",
+	"msl.simplesurvival.gg",
+	"mcsl.lemoncloud.net",
+	"join.ventureland.net",
+	"mcsl.pixelblockmc.com",
+	"mc.mcs.gg",
+	"leonemc.net",
+	"mcsl.gtm.network",
+	"fly.join-mineland.net"
 ]
