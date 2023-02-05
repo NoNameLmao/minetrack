@@ -9,7 +9,7 @@ module.exports = [
 	"mcs.mchub.com",
 	"8b8t.me",
 	"6b6t.org",
-	"play.mccentral.org",
+	"play.mccentral.org", // join.mccentral.org
 	"mc.librecraft.com",
 	"crankedmc.com",
 	"vanillahub.net",
@@ -61,5 +61,11 @@ module.exports = [
 	"mc.undernova.ru",
 	"morgenstern.top",
 	"mc.vayland.net",
-	"go.infplay.ru"
+	"go.infplay.ru",
+	"play.vanillaeuropa.com",
+	"skyblock.net",
+	"mcsl.vortexnetwork.net",
+	"play.havoc.games",
+	"mc.insanitycraft.net",
+	"msl.mc-blaze.com"
 ]
