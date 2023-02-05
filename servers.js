@@ -56,5 +56,11 @@ module.exports = [
 	"goodmc.ru",
 	"vanilla.sparkcraft.ru",
 	"herobrine.org",
-	"sl.minecadia.com"
+	"sl.minecadia.com",
+	"yupixworld.ru",
+	"roleplay.ttp.su",
+	"mc.undernova.ru",
+	"morgenstern.top",
+	"mc.vayland.net",
+	"go.infplay.ru"
 ]
