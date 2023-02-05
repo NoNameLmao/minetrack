@@ -44,7 +44,7 @@ module.exports = [
 	"msl.pixelmonrealms.com:PC",
 	"mcslj.pika.host:PC",
 	"play.fruitysmp.com:PC",
-	"play.alphamc.ru:PC",
+	"play.alphamc.ru:PC", // join.alphacraft.ru
 	"mc.playmine.org:PC",
 	"mc.musteryworld.ru:PC",
 	"top1.funnymc.net:PC",
@@ -55,7 +55,8 @@ module.exports = [
 	"mcsl.zedarmc.com:PC",
 	"mc.elenox.net:PC",
 	"sun.mcbatyacraft.ru:PC",
-	"join.alphacraft.ru:PC",
 	"goodmc.ru:PC",
-	"vanilla.sparkcraft.ru:PC"
+	"vanilla.sparkcraft.ru:PC",
+	"herobrine.org:PC",
+	"sl.minecadia.com"
 ]
