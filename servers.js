@@ -43,7 +43,7 @@ module.exports = [
 	"msl.pixelmonrealms.com",
 	"mcslj.pika.host",
 	"play.fruitysmp.com",
-	"play.alphamc.ru", // join.alphacraft.ru
+	"play.alphamc.ru", // join.alphacraft.ru, sun.mcbatyacraft.ru
 	"mc.playmine.org",
 	"mc.musteryworld.ru",
 	"top1.funnymc.net",
@@ -53,7 +53,6 @@ module.exports = [
 	"mcslj.jartex.fun",
 	"mcsl.zedarmc.com",
 	"mc.elenox.net",
-	"sun.mcbatyacraft.ru",
 	"goodmc.ru",
 	"vanilla.sparkcraft.ru",
 	"herobrine.org",
