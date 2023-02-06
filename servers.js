@@ -93,5 +93,22 @@ module.exports = [
 	"budgie.network",
 	"medieval-vanilla.com",
 	"play.noblerealms.com",
-	"relheim.com"
+	"relheim.com",
+	"constantiam.net",
+	"dangermc.xyz",
+	"9b9t.com",
+	"0b0t.org",
+	"5b5t.org",
+	"l2x9.me",
+	"2b2t.com.au",
+	"oldfag.org",
+	"anarchyvn.net",
+	"mc.l1x1.tk",
+	"endcrystal.me",
+	"6g6s.org",
+	"hisparquia.org",
+	"paraiso.ga",
+	"phoenixanarchy.com",
+	"reinosmc.net",
+	"alfheim.pw"
 ]
