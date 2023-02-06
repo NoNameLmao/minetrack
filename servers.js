@@ -87,5 +87,11 @@ module.exports = [
 	"mc.reallyworld.ru",
 	"gamster.org",
 	"blocksmc.com",
-	"mc.universocraft.com"
+	"mc.universocraft.com",
+	"ml.mineglobe.org",
+	"play.yomnetwork.ca",
+	"budgie.network",
+	"medieval-vanilla.com",
+	"play.noblerealms.com",
+	"relheim.com"
 ]
