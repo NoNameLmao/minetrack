@@ -123,5 +123,14 @@ module.exports = [
 	"tubnet.gg",
 	"mc.voidedsky.net",
 	"minehut.com",
-	"bedwarspractice.club"
+	"bedwarspractice.club",
+	"play.rebirthsmp.xyz",
+	"tekkit2.craftersland.net",
+	"play.smpearth.com",
+	"mc.mythonia.net",
+	"jogar.absolutgg.com.br",
+	"play.lokamc.com",
+	"play.minecove.org",
+	"play.pixelmonharmony.com",
+	"play.enardoservers.com"
 ]
