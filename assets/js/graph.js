@@ -266,7 +266,6 @@ export class GraphDisplayManager {
                   serverName = `<span class="${this._app.favoritesManager.getIconClass(true)}"></span> ${serverName}`
                 }
 
-                return `${serverName}: ${formatNumber(point)}`
                 return `${serverName}: ${formatNumber(point) + (showingCount ? ' Players' : '%')}`
               }).join('<br>') + `<br><br><strong>${formatTimestampSeconds(this._graphTimestamps[idx])}</strong>`
 
