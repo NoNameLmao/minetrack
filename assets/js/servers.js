@@ -168,12 +168,10 @@ export class ServerRegistration {
       // Reset failed ping counter to ensure the next connection error
       // doesn't instantly retrigger a layout change
       this._failedSequentialPings = 0
-    } else {
+    } else if (++this._failedSequentialPings > 10) {
       // Attempt to retain a copy of the cached playerCount for up to N failed pings
       // This prevents minor connection issues from constantly reshuffling the layout
-      if (++this._failedSequentialPings > 5) {
-        this.playerCount = 0
-      }
+      this.playerCount = 0
     }
 
     // Use payload.playerCount so nulls WILL be pushed into the graphing data

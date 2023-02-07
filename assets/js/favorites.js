@@ -1,5 +1,4 @@
 export const FAVORITE_SERVERS_STORAGE_KEY = 'minetrack_favorite_servers'
-
 export class FavoritesManager {
   constructor (app) {
     this._app = app
@@ -10,15 +9,12 @@ export class FavoritesManager {
       let serverNames = localStorage.getItem(FAVORITE_SERVERS_STORAGE_KEY)
       if (serverNames) {
         serverNames = JSON.parse(serverNames)
-
         for (let i = 0; i < serverNames.length; i++) {
           const serverRegistration = this._app.serverRegistry.getServerRegistration(serverNames[i])
-
           // The serverName may not exist in the backend configuration anymore
           // Ensure serverRegistration is defined before mutating data or considering valid
           if (serverRegistration) {
             serverRegistration.isFavorite = true
-
             // Update icon since by default it is unfavorited
             document.getElementById(`favorite-toggle_${serverRegistration.serverId}`).setAttribute('class', this.getIconClass(serverRegistration.isFavorite))
           }
@@ -33,7 +29,6 @@ export class FavoritesManager {
       const serverNames = this._app.serverRegistry.getServerRegistrations()
         .filter(serverRegistration => serverRegistration.isFavorite)
         .map(serverRegistration => serverRegistration.data.name)
-
       if (serverNames.length > 0) {
         // Only save if the array contains data, otherwise clear the item
         localStorage.setItem(FAVORITE_SERVERS_STORAGE_KEY, JSON.stringify(serverNames))
@@ -43,18 +38,14 @@ export class FavoritesManager {
     }
   }
 
-  handleFavoriteButtonClick = (serverRegistration) => {
+  handleFavoriteButtonClick (serverRegistration) {
     serverRegistration.isFavorite = !serverRegistration.isFavorite
-
     // Update the displayed favorite icon
     document.getElementById(`favorite-toggle_${serverRegistration.serverId}`).setAttribute('class', this.getIconClass(serverRegistration.isFavorite))
-
     // Request the app controller instantly re-sort the server listing
     // This handles the favorite sorting logic internally
     this._app.sortController.sortServers()
-
     this._app.graphDisplayManager.handleServerIsFavoriteUpdate(serverRegistration)
-
     // Write an updated settings payload
     this.updateLocalStorage()
   }

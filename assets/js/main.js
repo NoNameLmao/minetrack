@@ -1,14 +1,14 @@
 import { App } from './app'
 
-const app = new App()
+window.app = new App()
 
 document.addEventListener('DOMContentLoaded', () => {
-  app.init()
+  window.app.init()
 
   window.addEventListener('resize', function () {
-    app.percentageBar.redraw()
+    window.app.percentageBar.redraw()
 
     // Delegate to GraphDisplayManager which can check if the resize is necessary
-    app.graphDisplayManager.requestResize()
+    window.app.graphDisplayManager.requestResize()
   }, false)
 }, false)

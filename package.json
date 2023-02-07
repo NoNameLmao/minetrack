@@ -49,7 +49,7 @@
         "parcel": "^2.8.0"
     },
     "scripts": {
-        "build": "eslint assets/js/*.js && parcel build assets/html/index.html --dist-dir dist",
+        "build": "eslint assets/js/*.js --fix && parcel build assets/html/index.html --dist-dir dist",
         "dev": "parcel build assets/html/index.html --no-optimize --dist-dir dist"
     },
     "optionalDependencies": {

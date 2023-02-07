@@ -37,9 +37,7 @@ export class App {
 
   setPublicConfig (publicConfig) {
     this.publicConfig = publicConfig
-
     this.serverRegistry.assignServers(publicConfig.servers)
-
     // Start repeating frontend tasks once it has received enough data to be considered active
     // This simplifies management logic at the cost of each task needing to safely handle empty data
     this.initTasks()
@@ -47,15 +45,12 @@ export class App {
 
   handleSyncComplete () {
     this.caption.hide()
-
     // Load favorites since all servers are registered
     this.favoritesManager.loadLocalStorage()
-
     // Run a single bulk server sort instead of per-add event since there may be multiple
     this.sortController.show()
     this.displayController.show()
     this.percentageBar.redraw()
-
     // The data may not be there to correctly compute values, but run an attempt
     // Otherwise they will be updated by #initTasks
     this.updateGlobalStats()
@@ -67,7 +62,6 @@ export class App {
 
   handleDisconnect () {
     this.tooltip.hide()
-
     // Reset individual tracker elements to flush any held data
     this.serverRegistry.reset()
     this.socketManager.reset()
@@ -75,23 +69,17 @@ export class App {
     this.displayController.reset()
     this.graphDisplayManager.reset()
     this.percentageBar.reset()
-
     // Undefine publicConfig, resynced during the connection handshake
     this.publicConfig = undefined
-
     // Clear all task ids, if any
     this._taskIds.forEach(clearInterval)
-
     this._taskIds = []
-
     // Reset hidden values created by #updateGlobalStats
     this._lastTotalPlayerCount = undefined
     this._lastServerRegistrationCount = undefined
-
     // Reset modified DOM structures
     document.getElementById('stat_totalPlayers').innerText = 0
     document.getElementById('stat_networks').innerText = 0
-
     this.setPageReady(false)
   }
 
@@ -101,7 +89,7 @@ export class App {
       .reduce((sum, current) => sum + current, 0)
   }
 
-  addServer = (serverId, payload, timestampPoints) => {
+  addServer (serverId, payload, timestampPoints) {
     // Even if the backend has never pinged the server, the frontend is promised a placeholder object.
     // result = undefined
     // error = defined with "Waiting" description
@@ -134,7 +122,7 @@ export class App {
     serverRegistration.initEventListeners()
   }
 
-  updateGlobalStats = () => {
+  updateGlobalStats () {
     // Only redraw when needed
     // These operations are relatively cheap, but the site already does too much rendering
     const totalPlayerCount = this.getTotalPlayerCount()
