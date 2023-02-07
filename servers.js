@@ -42,7 +42,7 @@ module.exports = [
 	"msl.pixelmonrealms.com",
 	"mcslj.pika.host",
 	"play.fruitysmp.com",
-	"play.alphamc.ru", // join.alphacraft.ru, sun.mcbatyacraft.ru
+	"play.alphamc.ru", // join.alphacraft.ru, sun.mcbatyacraft.ru, fly.join-mineland.net
 	"mc.playmine.org",
 	"mc.musteryworld.ru",
 	"top1.funnymc.net",
@@ -77,7 +77,6 @@ module.exports = [
 	"mc.mcs.gg",
 	"leonemc.net",
 	"mcsl.gtm.network",
-	"fly.join-mineland.net",
 	"mushmc.com",
 	"jogar.pixelmonbrasil.com.br",
 	"hylex.gg",
