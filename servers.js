@@ -110,5 +110,14 @@ module.exports = [
 	"paraiso.ga",
 	"phoenixanarchy.com",
 	"reinosmc.net",
-	"alfheim.pw"
+	"alfheim.pw",
+	"test.2b2t.org",
+	"2b2t.org.ru",
+	"crystalpvp.cc",
+	"2b2t.jp",
+	"1b1t.org",
+	"3b3t.me",
+	"2y2c.org",
+	"endzone.me",
+	"2b2tpvp.net"
 ]
