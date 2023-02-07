@@ -119,5 +119,10 @@ module.exports = [
 	"3b3t.me",
 	"2y2c.org",
 	"endzone.me",
-	"2b2tpvp.net"
+	"2b2tpvp.net",
+	"play.mccisland.net",
+	"tubnet.gg",
+	"mc.voidedsky.net",
+	"minehut.com",
+	"bedwarspractice.club"
 ]
