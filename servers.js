@@ -132,5 +132,6 @@ module.exports = [
     'play.lokamc.com',
     'play.minecove.org',
     'play.pixelmonharmony.com',
-    'play.enardoservers.com'
+    'play.enardoservers.com',
+    'snowanarchy.org'
 ]
