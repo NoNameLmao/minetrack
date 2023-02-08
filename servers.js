@@ -21,7 +21,6 @@ module.exports = [
     'play.enderkraken.com',
     'firesteal.playsurvival.me',
     'mc.calicocaffe.net',
-    'play.mcfalcon.org',
     'mccnetwork.uk',
     '9b9t.me',
     'mcsl.applecraft.org',
