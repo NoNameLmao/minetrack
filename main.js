@@ -27,8 +27,12 @@ servers.forEach((serverIP, serverId) => {
     app.serverRegistrations.push(new ServerRegistration(app, serverId, server))
 })
 tx2.metric({
-    name: 'Total Servers',
+    name: '! Total Servers',
     value: app.serverRegistrations.length
+})
+tx2.metric({
+    name: '! Total Players',
+    value: app.serverRegistrations.map(serverReg => serverReg.playerCount).reduce((a, b) => a + b, 0)
 })
 if (!config.serverGraphDuration) {
     logger.log('warn', '"serverGraphDuration" is not defined in config.json - defaulting to 3 minutes!')
