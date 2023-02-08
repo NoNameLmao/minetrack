@@ -14,6 +14,10 @@
         "ecmaVersion": 2018
     },
     "rules": {
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "lines-between-class-members": "off",
+        "space-before-function-paren": "off",
+        "node/no-callback-literal": "off"
     },
     "parser": "babel-eslint"
 }
