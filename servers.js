@@ -54,7 +54,6 @@ module.exports = [
     'herobrine.org',
     'sl.minecadia.com',
     'yupixworld.ru',
-    'roleplay.ttp.su',
     'mc.undernova.ru',
     'morgenstern.top',
     'mc.vayland.net',
