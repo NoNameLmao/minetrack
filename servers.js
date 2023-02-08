@@ -104,8 +104,6 @@ module.exports = [
     'mc.l1x1.tk',
     'endcrystal.me',
     '6g6s.org',
-    'hisparquia.org',
-    'paraiso.ga',
     'phoenixanarchy.com',
     'reinosmc.net',
     'alfheim.pw',
