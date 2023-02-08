@@ -14,5 +14,6 @@
 	"logFailedPings": true,
 	"logToDatabase": true,
 	"graphDuration": 604800000,
-	"serverGraphDuration": 180000
+	"serverGraphDuration": 180000,
+	"skipSrvTimeout": 0
 }
