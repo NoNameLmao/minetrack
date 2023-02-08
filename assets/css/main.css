@@ -360,6 +360,11 @@ footer a:hover {
   display: block;
   margin: 15px 0;
 }
+#big-graph-controls-drawer .custom-graph-controls {
+  text-align: center;
+  display: block;
+  margin: 15px 0;
+}
 
 #big-graph-checkboxes {
   margin: 15px auto 0 auto;

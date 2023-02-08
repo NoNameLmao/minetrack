@@ -3,7 +3,6 @@ const ServerRegistration = require('./lib/servers')
 const logger = require('./lib/logger')
 const config = require('./config')
 const servers = require('./servers')
-const tx2 = require('tx2')
 const app = new App()
 servers.forEach((serverIP, serverId) => {
     let hash = 0
@@ -26,14 +25,7 @@ servers.forEach((serverIP, serverId) => {
     server.color = '#' + Array(6 - color.length + 1).join('0') + color
     app.serverRegistrations.push(new ServerRegistration(app, serverId, server))
 })
-tx2.metric({
-    name: '! Total Servers',
-    value: app.serverRegistrations.length
-})
-tx2.metric({
-    name: '! Total Players',
-    value: app.serverRegistrations.map(serverReg => serverReg.playerCount).reduce((a, b) => a + b, 0)
-})
+
 if (!config.serverGraphDuration) {
     logger.log('warn', '"serverGraphDuration" is not defined in config.json - defaulting to 3 minutes!')
     config.serverGraphDuration = 3 * 60 * 10000

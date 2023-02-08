@@ -185,7 +185,7 @@ export class GraphDisplayManager {
     }
 
     buildPlotInstance (timestamps, playerCount, playerPercentage) {
-    // Lazy load settings from localStorage, if any and if enabled
+        // Lazy load settings from localStorage, if any and if enabled
         if (!this._hasLoadedSettings) {
             this._hasLoadedSettings = true
 
@@ -328,165 +328,147 @@ export class GraphDisplayManager {
         document.getElementById('settings-toggle').style.display = 'inline-block'
     }
 
-  redraw = () => {
-      // Use drawing as a hint to update settings
-      // This may cause unnessecary localStorage updates, but its a rare and harmless outcome
-      this.updateLocalStorage()
+    redraw = () => {
+        // Use drawing as a hint to update settings
+        // This may cause unnessecary localStorage updates, but its a rare and harmless outcome
+        this.updateLocalStorage()
+        // Copy application state into the series data used by uPlot
+        for (const serverRegistration of this._app.serverRegistry.getServerRegistrations()) {
+            this._plotInstance.series[serverRegistration.getGraphDataIndex()].show = serverRegistration.isVisible
+        }
+        this._plotInstance.redraw()
+    }
 
-      // Copy application state into the series data used by uPlot
-      for (const serverRegistration of this._app.serverRegistry.getServerRegistrations()) {
-          this._plotInstance.series[serverRegistration.getGraphDataIndex()].show = serverRegistration.isVisible
-      }
+    requestResize() {
+        // Only resize when _plotInstance is defined
+        // Set a timeout to resize after resize events have not been fired for some duration of time
+        // This prevents burning CPU time for multiple, rapid resize events
+        if (this._plotInstance) {
+            if (this._resizeRequestTimeout) clearTimeout(this._resizeRequestTimeout)
+            // Schedule new delayed resize call
+            // This can be cancelled by #requestResize, #resize and #reset
+            this._resizeRequestTimeout = setTimeout(this.resize, 200)
+        }
+    }
+    resize = () => {
+        this._plotInstance.setSize(this.getPlotSize())
+        // undefine value so #clearTimeout is not called
+        // This is safe even if #resize is manually called since it removes the pending work
+        if (this._resizeRequestTimeout) clearTimeout(this._resizeRequestTimeout)
+        this._resizeRequestTimeout = undefined
+    }
 
-      this._plotInstance.redraw()
-  }
+    initEventListeners() {
+        if (!this._initEventListenersOnce) {
+            this._initEventListenersOnce = true
+            // These listeners should only be init once since they attach to persistent elements
+            document.getElementById('settings-toggle').addEventListener('click', this.handleSettingsToggle, false)
+            document.querySelectorAll('.graph-controls-show').forEach(element => {
+                element.addEventListener('click', this.handleShowButtonClick, false)
+            })
+        }
+        // These listeners should be bound each #initEventListeners call since they are for newly created elements
+        document.querySelectorAll('.graph-control').forEach(element => {
+            element.addEventListener('click', this.handleServerButtonClick, false)
+        })
+    }
 
-  requestResize () {
-      // Only resize when _plotInstance is defined
-      // Set a timeout to resize after resize events have not been fired for some duration of time
-      // This prevents burning CPU time for multiple, rapid resize events
-      if (this._plotInstance) {
-          if (this._resizeRequestTimeout) {
-              clearTimeout(this._resizeRequestTimeout)
-          }
+    handleServerButtonClick = event => {
+        const serverId = parseInt(event.target.getAttribute('minetrack-server-id'))
+        const serverRegistration = this._app.serverRegistry.getServerRegistration(serverId)
 
-          // Schedule new delayed resize call
-          // This can be cancelled by #requestResize, #resize and #reset
-          this._resizeRequestTimeout = setTimeout(this.resize, 200)
-      }
-  }
+        if (serverRegistration.isVisible !== event.target.checked) {
+            serverRegistration.isVisible = event.target.checked
 
-  resize = () => {
-      this._plotInstance.setSize(this.getPlotSize())
+            // Any manual changes automatically disables "Only Favorites" mode
+            // Otherwise the auto management might overwrite their manual changes
+            this._showOnlyFavorites = false
 
-      // undefine value so #clearTimeout is not called
-      // This is safe even if #resize is manually called since it removes the pending work
-      if (this._resizeRequestTimeout) {
-          clearTimeout(this._resizeRequestTimeout)
-      }
+            this.redraw()
+        }
+    }
 
-      this._resizeRequestTimeout = undefined
-  }
+    handleShowButtonClick = event => {
+        const showType = event.target.getAttribute('minetrack-show-type')
+        // If set to "Only Favorites", set internal state so that
+        // visible graphData is automatically updating when a ServerRegistration's #isVisible changes
+        // This is also saved and loaded by #loadLocalStorage & #updateLocalStorage
+        this._showOnlyFavorites = showType === 'favorites'
+        let redraw = false
+        this._app.serverRegistry.getServerRegistrations().forEach(serverRegistration => {
+            let isVisible
+            if (showType === 'all') isVisible = true
+            else if (
+                showType === 'none' || (
+                    showType === '6bvs8b' &&
+                    !['6b6t.org', '8b8t.me']
+                        .includes(serverRegistration.data.ip)
+                )
+            ) isVisible = false
+            else if (showType === 'favorites') isVisible = serverRegistration.isFavorite
+            if (showType === '6bvs8b') {
+                if (['6b6t.org', '8b8t.me'].includes(serverRegistration.data.ip)) isVisible = true
+            }
+            if (serverRegistration.isVisible !== isVisible) {
+                serverRegistration.isVisible = isVisible
+                redraw = true
+            }
+        })
+        if (redraw) {
+            this.redraw()
+            this.updateCheckboxes()
+        }
+    }
 
-  initEventListeners () {
-      if (!this._initEventListenersOnce) {
-          this._initEventListenersOnce = true
+    handleSettingsToggle = () => {
+        const element = document.getElementById('big-graph-controls-drawer')
 
-          // These listeners should only be init once since they attach to persistent elements
-          document.getElementById('settings-toggle').addEventListener('click', this.handleSettingsToggle, false)
+        if (element.style.display !== 'block') {
+            element.style.display = 'block'
+        } else {
+            element.style.display = 'none'
+        }
+    }
 
-          document.querySelectorAll('.graph-controls-show').forEach((element) => {
-              element.addEventListener('click', this.handleShowButtonClick, false)
-          })
-      }
+    handleServerIsFavoriteUpdate = serverRegistration => {
+        // When in "Only Favorites" mode, visibility is dependent on favorite status
+        // Redraw and update elements as needed
+        if (this._showOnlyFavorites && serverRegistration.isVisible !== serverRegistration.isFavorite) {
+            serverRegistration.isVisible = serverRegistration.isFavorite
 
-      // These listeners should be bound each #initEventListeners call since they are for newly created elements
-      document.querySelectorAll('.graph-control').forEach((element) => {
-          element.addEventListener('click', this.handleServerButtonClick, false)
-      })
-  }
+            this.redraw()
+            this.updateCheckboxes()
+        }
+    }
 
-  handleServerButtonClick = (event) => {
-      const serverId = parseInt(event.target.getAttribute('minetrack-server-id'))
-      const serverRegistration = this._app.serverRegistry.getServerRegistration(serverId)
+    updateCheckboxes() {
+        document.querySelectorAll('.graph-control').forEach((checkbox) => {
+            const serverId = parseInt(checkbox.getAttribute('minetrack-server-id'))
+            const serverRegistration = this._app.serverRegistry.getServerRegistration(serverId)
 
-      if (serverRegistration.isVisible !== event.target.checked) {
-          serverRegistration.isVisible = event.target.checked
+            checkbox.checked = serverRegistration.isVisible
+        })
+    }
 
-          // Any manual changes automatically disables "Only Favorites" mode
-          // Otherwise the auto management might overwrite their manual changes
-          this._showOnlyFavorites = false
-
-          this.redraw()
-      }
-  }
-
-  handleShowButtonClick = (event) => {
-      const showType = event.target.getAttribute('minetrack-show-type')
-
-      // If set to "Only Favorites", set internal state so that
-      // visible graphData is automatically updating when a ServerRegistration's #isVisible changes
-      // This is also saved and loaded by #loadLocalStorage & #updateLocalStorage
-      this._showOnlyFavorites = showType === 'favorites'
-
-      let redraw = false
-
-      this._app.serverRegistry.getServerRegistrations().forEach(function (serverRegistration) {
-          let isVisible
-          if (showType === 'all') {
-              isVisible = true
-          } else if (showType === 'none') {
-              isVisible = false
-          } else if (showType === 'favorites') {
-              isVisible = serverRegistration.isFavorite
-          }
-
-          if (serverRegistration.isVisible !== isVisible) {
-              serverRegistration.isVisible = isVisible
-              redraw = true
-          }
-      })
-
-      if (redraw) {
-          this.redraw()
-          this.updateCheckboxes()
-      }
-  }
-
-  handleSettingsToggle = () => {
-      const element = document.getElementById('big-graph-controls-drawer')
-
-      if (element.style.display !== 'block') {
-          element.style.display = 'block'
-      } else {
-          element.style.display = 'none'
-      }
-  }
-
-  handleServerIsFavoriteUpdate = (serverRegistration) => {
-      // When in "Only Favorites" mode, visibility is dependent on favorite status
-      // Redraw and update elements as needed
-      if (this._showOnlyFavorites && serverRegistration.isVisible !== serverRegistration.isFavorite) {
-          serverRegistration.isVisible = serverRegistration.isFavorite
-
-          this.redraw()
-          this.updateCheckboxes()
-      }
-  }
-
-  updateCheckboxes () {
-      document.querySelectorAll('.graph-control').forEach((checkbox) => {
-          const serverId = parseInt(checkbox.getAttribute('minetrack-server-id'))
-          const serverRegistration = this._app.serverRegistry.getServerRegistration(serverId)
-
-          checkbox.checked = serverRegistration.isVisible
-      })
-  }
-
-  reset () {
-      // Destroy graphs and unload references
-      // uPlot#destroy handles listener de-registration, DOM reset, etc
-      if (this._plotInstance) {
-          this._plotInstance.destroy()
-          this._plotInstance = undefined
-      }
-
-      this._graphTimestamps = []
-      this._graphData = []
-      this._percentageGraphData = []
-      this._hasLoadedSettings = false
-
-      // Fire #clearTimeout if the timeout is currently defined
-      if (this._resizeRequestTimeout) {
-          clearTimeout(this._resizeRequestTimeout)
-
-          this._resizeRequestTimeout = undefined
-      }
-
-      // Reset modified DOM structures
-      document.getElementById('big-graph-checkboxes').innerHTML = ''
-      document.getElementById('big-graph-controls').style.display = 'none'
-
-      document.getElementById('settings-toggle').style.display = 'none'
-  }
+    reset() {
+        // Destroy graphs and unload references
+        // uPlot#destroy handles listener de-registration, DOM reset, etc
+        if (this._plotInstance) {
+            this._plotInstance.destroy()
+            this._plotInstance = undefined
+        }
+        this._graphTimestamps = []
+        this._graphData = []
+        this._percentageGraphData = []
+        this._hasLoadedSettings = false
+        // Fire #clearTimeout if the timeout is currently defined
+        if (this._resizeRequestTimeout) {
+            clearTimeout(this._resizeRequestTimeout)
+            this._resizeRequestTimeout = undefined
+        }
+        // Reset modified DOM structures
+        document.getElementById('big-graph-checkboxes').innerHTML = ''
+        document.getElementById('big-graph-controls').style.display = 'none'
+        document.getElementById('settings-toggle').style.display = 'none'
+    }
 }
